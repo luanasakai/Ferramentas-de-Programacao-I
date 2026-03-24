@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="primefaces"
+      xmlns:h="jakarta.faces.html">
+    <h:head>
+        <title>Luana</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body style="background-color: lemonchiffon">
+        
+        <div><h1><font color= "black">Página inicial legal</font></h1></div>
+        <h:form>
+            
+                    <p:commandButton value="Inserir Pessoa" 
+                         action="#{pessoaController.inserir()}"
+                         style="background-color: crimson"
+                    />
+                
+                    <p/> 
+                    
+                    <p:commandButton value="Inserir Veiculo" 
+                         action="#{pessoaController.inserirVeiculos()}"
+                         style="background-color: lightseagreen"
+                         
+                    />
+               
+                    <p/> 
+                    
+                    <p:commandButton value="Inserir Categoria" 
+                         action="#{pessoaController.inserirCategoria()}"
+                         style="background-color: plum"
+                         
+                    />
+                    
+                    <p/> 
+                    
+                    <p:commandButton value="Inserir Produto" 
+                         action="#{pessoaController.inserirProduto()}"
+                         style="background-color: mediumvioletred"
+                         
+                    />
+                    
+                    <p/> 
+                    
+                    <p:commandButton value="Inserir Produto2" 
+                         action="#{pessoaController.inserirProduto2()}"
+                         style="background-color: #ff6600"
+                         
+                    />
+                  
+                    <p/> 
+                    
+                    <p:commandButton value="Alterar Categoria" 
+                         action="#{pessoaController.alterarCategoria()}"
+                         style="background-color: blue"
+                         
+                    />
+                    
+                    <p/> 
+                    
+                    <p:commandButton value="Remover Categoria" 
+                         action="#{pessoaController.alterarCategoria()}"
+                         style="background-color: red"
+                         
+                    />
+                    
+            
+        </h:form>
+
+        
+    </h:body>
+</html>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>JSF/PRIMEFACES - 10/09/2025</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body style="background-color: cornsilk">
+        
+           <h1><font color= "black">JSF/PRIMEFACES - 10/09/2025</font></h1>
+           <p/>
+            
+           <h:form id="form">
+               <p:growl id="growl" showDetail="true" />  <!-- aparece a mensagem na tela -->
+                <font color= "black"  style="margin-left: 40px">Nome:</font>
+                <p/>
+                <p:inputText 
+                    value="#{pessoaController.pessoa.nome}"
+                     style="margin-left: 40px"
+                />
+                <p/>
+                
+                <font color= "black"  style="margin-left: 40px">Data de Nascimento:</font>
+                <p/>
+                <p:datePicker 
+                    value="#{pessoaController.pessoa.dataNascimento}"
+                    style="margin-left: 40px"
+                />
+                
+                <p/>
+                
+                <font color= "black"  style="margin-left: 40px">Salário:</font>
+                <p/>
+                <p:inputNumber 
+                    value="#{pessoaController.pessoa.salario}"
+                    style="margin-left: 40px"
+                />
+                
+                <p/>
+                
+                <font color= "black" style="margin-left: 40px">Numero:</font>
+                <p/>
+                <p:spinner 
+                    id="numero" 
+                    value="#{pessoaController.pessoa.numero}"
+                    style="margin-left: 40px;"
+                />
+                
+                <p/>
+                
+                <p:commandButton 
+                        value="Inserir"
+                        update="growl"
+                        ajax="false" 
+                        action="#{pessoaController.inserir()}"
+                        style="background-color: cadetblue; margin-left: 40px;"
+                />
+                
+                <p:commandButton 
+                        value="Incrementar" 
+                        update="numero" 
+                        ajax="false" 
+                        action="#{pessoaController.incrementar()}"
+                        style="background-color: crimson; margin-left: 40px;"
+                />
+                
+                <p:commandButton 
+                        value="Exibir" 
+                        action="#{pessoaController.exibir()}"
+                        style="background-color: crimson; margin-left: 60px;"
+                />
+                
+                <!--<font color= "black">Numero:</font>
+                <p/>
+                <p:inputText value="# {pessoaController.numero}"/>
+                <p/> -->
+                <!-- ajax="false"- da update na pagina inteira 
+                     <span/> - da um espacinho entre os componentes-->
+        </h:form> 
+    </h:body>
+</html>

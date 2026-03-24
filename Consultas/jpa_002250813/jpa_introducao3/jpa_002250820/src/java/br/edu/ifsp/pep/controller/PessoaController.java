@@ -1,0 +1,322 @@
+
+package br.edu.ifsp.pep.controller;
+
+import br.edu.ifsp.pep.dao.CategoriaDAO;
+import br.edu.ifsp.pep.dao.PessoaDAO;
+import br.edu.ifsp.pep.dao.ProdutoDAO;
+import br.edu.ifsp.pep.dao.VeiculoDAO;
+import br.edu.ifsp.pep.entidade.Categoria;
+import br.edu.ifsp.pep.entidade.Endereco;
+import br.edu.ifsp.pep.entidade.Pessoa;
+import br.edu.ifsp.pep.entidade.Produto;
+import br.edu.ifsp.pep.entidade.TipoPessoa;
+import br.edu.ifsp.pep.entidade.TipoVeiculo;
+import br.edu.ifsp.pep.entidade.Veiculo;
+import jakarta.enterprise.context.SessionScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.persistence.NoResultException;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+/**
+ *
+ * @author aluno
+ */
+@Named(value = "pessoaController")
+@SessionScoped
+public class PessoaController implements Serializable {
+    
+    @Inject()
+    private PessoaDAO pessoaDAO;
+    
+    
+    @Inject()
+    private VeiculoDAO veiculoDAO;
+    
+    @Inject()
+    private ProdutoDAO produtoDAO;
+    
+    @Inject()
+    private CategoriaDAO categoriaDAO;
+    
+    public void inserir(){
+    
+        System.out.println("INSERINDO PESSOA");
+        
+        Pessoa p =new Pessoa();
+        p.setNome("xuxa");
+        p.setEmail("soparabaixinhos@xuxa.com");
+        p.setSalario(new BigDecimal(1000));
+        p.setDataNascimento(LocalDate.now());
+        p.setTipo(TipoPessoa.Gerente);
+        
+        //ENDERECO
+        Endereco e = new Endereco();
+        e.setLogradouro("Rua dos bobos, 00-00");
+        e.setBairro("Centro");
+        e.setCidade_estado("Xique-Xique, Bahia");
+        
+        p.setEndereco(e);
+        
+        //VEICULOS
+        Veiculo v1 = new Veiculo();
+        v1.setNome("Uno");
+        v1.setTipo(TipoVeiculo.Carro);
+        
+        Veiculo v2 = new Veiculo();
+        v2.setNome("Fusca");
+        v2.setTipo(TipoVeiculo.Carro);
+        
+        List<Veiculo> veiculos = new ArrayList<>();
+        veiculos.add(v1);
+        veiculos.add(v2);
+        
+        p.setVeiculos(veiculos);
+        
+        pessoaDAO.inserir(p);
+ 
+    }
+    
+        public void inserirPessoas(){
+    
+        System.out.println("INSERINDO PESSOAS");
+        
+        for(int i = 0 ; i<10 ; i++){
+            Pessoa p =new Pessoa();
+            p.setNome("Luana" + i);
+            p.setEmail("luana" + i + "@email");
+            p.setSalario(new BigDecimal(1000 * new  Random().nextInt(10)));
+            p.setDataNascimento(LocalDate.now().plusDays(i));
+            p.setTipo(TipoPessoa.Gerente);
+            
+            //ENDERECO
+            Endereco e = new Endereco();
+            e.setLogradouro("Rua dos bobos, 00-00");
+            e.setBairro("Centro");
+            e.setCidade_estado("Xique-Xique, Bahia");
+        
+            p.setEndereco(e);
+              
+            pessoaDAO.inserir(p);
+ 
+        }
+
+    }
+    
+    public void inserirVeiculos(){
+        
+        Veiculo v = new Veiculo();
+        v.setNome("Gol");
+        v.setTipo(TipoVeiculo.Carro);
+        
+        veiculoDAO.inserir(v);
+    }
+    
+    public void inserirCategoria(){
+        Categoria c = new Categoria();
+        c.setNome("Categoria 1");
+        
+        categoriaDAO.inserir(c);
+    }
+    
+    public void alterarCategoria(){
+        
+        Categoria c = categoriaDAO.buscarPorCodigo(1);
+        if(c != null){
+            System.out.println(c.getNome());
+            c.setNome("Categoria 1 - Alterada");
+            
+            categoriaDAO.alterar(c);
+        }else{
+            System.out.println("Nao existe categoria.");
+        }
+        
+        /*
+        Categoria c = new Categoria();
+        c.setCodigo(1);
+        c.setNome("Nova Categoria");*/
+    }
+    
+    public void removerCategoria(){
+        Categoria c = new Categoria();
+        c.setCodigo(1);
+        
+        categoriaDAO.remover(c);
+    }
+    
+    public void inserirProduto2(){
+        Produto p1 = new Produto();
+        p1.setNome("Produto 3");
+        p1.setPreco(BigDecimal.ZERO);
+        p1.setQuantidade(100);
+       
+        //BUSCAR CATEGORIA NO BD
+        //o atributo categoria, na classe produto, NAO pode ter CASCADE
+        Categoria c = categoriaDAO.buscarPorCodigo(1);
+        p1.setCategoria(c);
+        
+        /*DESTE JEITO TBM FUNCIONA
+        Categoria c = new Categoria();
+        c.setCodigo(1);*/
+        produtoDAO.inserir(p1);
+    }
+    
+    public void inserirProduto(){
+        //PRODUTO
+        Produto p1 = new Produto();
+        p1.setNome("Produto 1");
+        p1.setPreco(BigDecimal.ZERO);
+        p1.setQuantidade(100);
+        
+        Categoria c = new Categoria();
+        c.setCodigo(1);
+        p1.setCategoria(c);
+        
+        produtoDAO.inserir(p1);
+        
+        Produto p2 = new Produto();
+        p2.setNome("Produto 2");
+        p2.setPreco(BigDecimal.ZERO);
+        p2.setQuantidade(200);
+        
+        p2.setCategoria(c);
+        
+        produtoDAO.inserir(p2);
+    }
+    
+    public void findPessoas(){
+        List<Pessoa> pessoas = pessoaDAO.findAll();
+        System.out.println(pessoas);
+    }
+    
+    public void findPessoaPorCodigo(){
+        
+        Pessoa p = pessoaDAO.findPorCodigo(10);
+        
+        if(p == null){
+            System.out.println("PESSOA NAO ENCONTRADA");
+        }else{
+            System.out.println(p);
+        }
+        /*
+        try{
+            
+        }catch(NoResultException){
+            
+        }*/
+    }
+    
+    public void obterQuantidadePessoa(){
+        
+        Long quantidade = pessoaDAO.obterQuantidadePessoa();
+        
+        if(quantidade == null){
+            System.out.println("ALGO DEU ERRADO");
+        }else{
+            System.out.println("Quantidade de pessoas: " + quantidade);
+        }
+        
+    }
+    
+    public void obterMaiorSalario(){
+        
+        BigDecimal maior = pessoaDAO.obterMaiorSalario();
+        
+        if(maior == null){
+            System.out.println("\n ALGO DEU ERRADO");
+        }else{
+            System.out.println("\n Maior salario: " + maior);
+        }
+        
+    }
+    
+    public void obterSalarioMedio(){
+        
+        Double medio = pessoaDAO.obterSalarioMedio();
+        
+        if(medio == null){
+            System.out.println("\n ALGO DEU ERRADO");
+        }else{
+            System.out.println("\n Salario Medio: " + medio);
+        }
+        
+    }
+    
+    public void obterMenorSalario(){
+        
+        BigDecimal menor = pessoaDAO.obterMenorSalario();
+        
+        if(menor == null){
+            System.out.println("\n ALGO DEU ERRADO");
+        }else{
+            System.out.println("\n Menor salario: " + menor);
+        }
+        
+    }
+    
+    public void findBySalario(){
+        
+        List<Pessoa> pessoas = pessoaDAO.findBySalario();
+        
+        System.out.println("\n PESSOAS COM SALARIO MAIOR QUE R$5.000");
+        for (Pessoa pessoa : pessoas) {
+            System.out.println("Nome: "+ pessoa.getNome() + "  Salario: "+ pessoa.getSalario());  
+        }
+    }
+    
+    public void findByGerente(){
+        TipoPessoa g = TipoPessoa.Gerente;
+        List<Pessoa> pessoas = pessoaDAO.findByGerente(g);
+        
+        System.out.println("\n PESSOAS QUE SAO GERENTES");
+        for (Pessoa pessoa : pessoas) {
+            System.out.println(pessoa.getNome());  
+        }
+    }
+    
+    public void findByGerenteSalario(){
+        TipoPessoa g = TipoPessoa.Gerente;
+        List<Pessoa> pessoas = pessoaDAO.findByGerenteSalario(g);
+        
+        System.out.println("\n GERENTES COM SALARIO MENOR R$5.000");
+        for (Pessoa pessoa : pessoas) {
+            System.out.println("Nome: "+ pessoa.getNome() + "  Salario: "+ pessoa.getSalario());  
+        }
+    }
+    
+    public void findByName(){
+        List<Pessoa> pessoas = pessoaDAO.findByName("Lu");
+        
+        System.out.println("\n OBTER PESSOAS POR NOME");
+        for (Pessoa pessoa : pessoas) {
+            System.out.println(pessoa.getNome());  
+        }
+    }
+    
+    public void obterSalarioMedioGerentes(){
+        
+        Double medio = pessoaDAO.obterSalarioMedioGerentes();
+        
+        if(medio == null){
+            System.out.println("\n ALGO DEU ERRADO");
+        }else{
+            System.out.println("\n Gerentes que ganham mais que a media: " + medio);
+        }
+    }
+    
+    public void obterGerentesGanhamMaisQueMedia(){
+        
+        List<Pessoa> pessoas = pessoaDAO.obterGerentesGanhamMaisQueMedia();
+        
+        System.out.println("\n GERENTES QUE GANHAM MAIS DO QUE A MEDIA");
+        for (Pessoa pessoa : pessoas) {
+            System.out.println("Nome: "+ pessoa.getNome() + "  Salario: "+ pessoa.getSalario());  
+        }
+        
+    }
+}

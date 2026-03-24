@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>JSF/PRIMEFACES - 17/09/2025</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body style="background-color: #BADFCD">
+        
+        <div style="display: flex; justify-content: center; margin-bottom: -15px;">
+            <h1><font color= '#454545'>Pagina Inicial</font></h1>
+        </div>
+        <hr/>
+        
+        <h:form>
+            <div style="display: flex; justify-content: center;">
+                <p:commandButton 
+                    value="Cadastro de Pessoas" 
+                    ajax="false"
+                    action="/pessoa/cadastro.xhtml"
+                    style="
+                    background-color: #454545;
+                    color: white;
+                    margin-top: 20px;
+                    border: none;
+                    padding: 10px 20px;
+                    font-size: 16px;
+                    border-radius: 5px;
+                    margin-right: 20px;"
+                    onmouseover="this.style.backgroundColor = '#736EAE';" 
+                    onmouseout="this.style.backgroundColor = '#ADB5D6';  this.style.color = '#454545';"
+                />
+
+                <p:commandButton 
+                    value="Lista de Pessoas"
+                    ajax="false"
+                    action="/pessoa/lista.xhtml"
+                    style="
+                    background-color: #454545;
+                    color: white;
+                    margin-top: 20px;
+                    border: none;
+                    padding: 10px 20px;
+                    font-size: 16px;
+                    border-radius: 5px;"
+                    onmouseover="this.style.backgroundColor = '#736EAE';" 
+                    onmouseout="this.style.backgroundColor = '#ADB5D6';  this.style.color = '#454545';"
+                />
+            </div>
+        </h:form>
+    </h:body>
+</html>

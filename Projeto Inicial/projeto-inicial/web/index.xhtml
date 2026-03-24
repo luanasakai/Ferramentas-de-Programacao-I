@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+            <title>TOPICO DA AULA - DIA</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body style="background-color: cornsilk">
+        <h:form id="form">
+            
+            <h1><font color= "black">TOPICO DA AULA - DIA</font></h1>
+            <p/>
+            
+            <p:growl id="growl" showDetail="true" /> <!-- aparece a mensagem na tela -->
+            <font color= "black"  style="margin-left: 40px">Texto</font>
+            <p/>
+            
+            <p:commandButton 
+                        value="Inserir"
+                        update="growl"
+                        ajax="false" 
+                        action="#{pessoaController.inserir()}"
+                        style="background-color: cadetblue; margin-left: 40px;"
+            />
+        </h:form>
+    </h:body>
+</html>

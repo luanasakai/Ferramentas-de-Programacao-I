@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>JSF/PRIMEFACES - 17/09/2025</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body style="background-color: #BADFCD">
+        
+        <div style="display: flex; justify-content: center; margin-bottom: -15px;">
+            <h1><font color= '#454545'>Tabela de Pessoas</font></h1>
+        </div>
+        <hr/>
+        
+        <h:form id="form">
+            <p:growl id="growl" showDetail="true"/>
+            <p:dataTable 
+                    var="pessoa" value="#{pessoaController.pessoas}" rows="5"
+                    paginator="true" paginatorPosition="bottom"
+                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records">
+                
+                <p:column headerText="ID" responsivePriority="4">
+                    <h:outputText value="#{pessoa.numero}"/>
+                </p:column>
+                
+                <p:column headerText="Nome">
+                    <h:outputText value="#{pessoa.nome}"/>
+                </p:column>
+                
+                <p:column headerText="Data de Nascimento" responsivePriority="3">
+                    <h:outputText value="#{pessoa.dataNascimento}">
+                        <f:convertDateTime pattern="dd/MM/yyy" type="localDate"/>
+                    </h:outputText>
+                </p:column>
+                
+                <p:column headerText="Salario" responsivePriority="2">
+                    <h:outputText value="#{pessoa.salario}">
+                        <f:convertNumber type="currency"/>
+                    </h:outputText>
+                </p:column>
+                
+                <p:column>
+                    <p:commandButton 
+                        icon="pi pi-trash"        
+                        style="background-color: red;"
+                        update="form:growl"
+                        ajax="false"
+                        action="#{pessoaController.excluir(pessoa)}"
+                    />
+                </p:column>
+                
+            </p:dataTable>
+
+            <p/>
+            
+            <div style="display: flex; justify-content: center;">
+                <p:commandButton 
+                    value="Voltar" 
+                    update="growl"
+                    ajax="false" 
+                    action="/pessoa/cadastro.xhtml"
+                    style="
+                    background-color: #454545; 
+                    color: white; margin-top: 20px; 
+                    border: none; padding: 10px 20px; 
+                    font-size: 16px; 
+                    border-radius: 5px;"
+                    onmouseover="this.style.backgroundColor = '#736EAE';" 
+                    onmouseout="this.style.backgroundColor = '#ADB5D6';  this.style.color = '#454545';"
+                />
+            </div>
+
+        </h:form> 
+    </h:body>
+</html>

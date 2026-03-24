@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="primefaces"
+      xmlns:h="jakarta.faces.html">
+    <h:head>
+        <title>Luana</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body style="background-color: lemonchiffon">
+        
+        <div><h1><font color= "black">Página inicial legal</font></h1></div>
+        <h:form>
+                    <h2>Pessoas</h2>
+                    <p:commandButton value="Inserir Pessoa" 
+                         action="#{pessoaController.inserir()}"
+                         style="background-color: crimson; margin-right: 20px;"
+                    />
+                    
+                    <p:commandButton value="Inserir Pessoas" 
+                         action="#{pessoaController.inserirPessoas()}"
+                         style="background-color: crimson; margin-right: 20px;"
+                         
+                    />
+                    
+                    <p/> 
+                    <h3>Consulta de Pessoas</h3>
+                    <p:commandButton value="Buscar Todas as Pessoas" 
+                         action="#{pessoaController.findPessoas()}"
+                         style="background-color: darkslateblue; margin-right: 20px;"
+                         
+                    />
+                    
+                    <p:commandButton value="Buscar Pessoa por Codigo" 
+                         action="#{pessoaController.findPessoaPorCodigo()}"
+                         style="background-color: darkslateblue; margin-right: 20px;"
+                         
+                    />
+
+                    <p:commandButton value="Obter Quantidade de Pessoas" 
+                         action="#{pessoaController.obterQuantidadePessoa()}"
+                         style="background-color: darkslateblue; margin-right: 20px;"
+                         
+                    />
+                    
+                    <p:commandButton value="Obter Pessoas que sao Gerente" 
+                         action="#{pessoaController.findByGerente()}"
+                         style="background-color: darkslateblue; margin-right: 20px;"
+                         
+                    />
+                    
+                    <p:commandButton value="Obter Pessoas pelo Nome" 
+                         action="#{pessoaController.findByName()}"
+                         style="background-color: darkslateblue"
+                         
+                    />
+                    
+                    <p/> 
+                    <h3>Consulta de Salario</h3>
+                    <p:commandButton value="Obter Maior Salario" 
+                         action="#{pessoaController.obterMaiorSalario()}"
+                         style="background-color: darkcyan; margin-right: 20px;"
+                         
+                    />
+                    
+                    <p:commandButton value="Obter Salario Medio" 
+                         action="#{pessoaController.obterSalarioMedio()}"
+                         style="background-color: darkcyan; margin-right: 20px;"
+                         
+                    />
+                    
+                    <p:commandButton value="Obter Menor Salario" 
+                         action="#{pessoaController.obterMenorSalario()}"
+                         style="background-color: darkcyan; margin-right: 20px;"
+                         
+                    />
+                    
+                    <p:commandButton value="Lista de Pessoas com Salario MAIOR que R$5.000" 
+                         action="#{pessoaController.findBySalario()}"
+                         style="background-color: darkcyan; margin-right: 20px;"
+                         
+                    />
+                    
+                    <p:commandButton value="Lista de Gerentes com Salario MENOR que 5.000" 
+                         action="#{pessoaController.findByGerenteSalario()}"
+                         style="background-color: darkcyan; margin-right: 20px;"
+                         
+                    />
+                    
+                    <p:commandButton value="Salario Medio de Gerentes" 
+                         action="#{pessoaController.obterSalarioMedioGerentes()}"
+                         style="background-color: darkcyan; margin-right: 20px;"
+                         
+                    />
+                    
+                    <p:commandButton value="Gerentes que ganham mais do que a media" 
+                         action="#{pessoaController.obterGerentesGanhamMaisQueMedia()}"
+                         style="background-color: darkcyan; margin-top: 20px;"
+                         
+                    />
+                
+                    <p/> 
+                    <h2>Veiculo</h2>
+                    <p:commandButton value="Inserir Veiculo" 
+                         action="#{pessoaController.inserirVeiculos()}"
+                         style="background-color: red"
+                         
+                    />
+               
+                    <p/> 
+                    <h2>Categoria</h2>
+                    <p:commandButton value="Inserir Categoria" 
+                         action="#{pessoaController.inserirCategoria()}"
+                         style="background-color: plum"
+                         
+                    />
+                    
+                                     
+                    <p/> 
+                    <h3>Controle de Categoria</h3>
+                    <p:commandButton value="Alterar Categoria" 
+                         action="#{pessoaController.alterarCategoria()}"
+                         style="background-color: blue; margin-right: 20px;"
+                         
+                    />
+                    
+                    <p:commandButton value="Remover Categoria" 
+                         action="#{pessoaController.alterarCategoria()}"
+                         style="background-color: blue"
+                         
+                    />
+                    
+                    <p/> 
+                    <h2>Produto</h2>
+                    <p:commandButton value="Inserir Produto" 
+                         action="#{pessoaController.inserirProduto()}"
+                         style="background-color: pink; margin-right: 20px;"
+                         
+                    />
+                    
+                    <p:commandButton value="Inserir Produto2" 
+                         action="#{pessoaController.inserirProduto2()}"
+                         style="background-color: pink"
+                         
+                    />
+            
+        </h:form>
+
+        
+    </h:body>
+</html>

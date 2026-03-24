@@ -1,0 +1,57 @@
+#bottom {
+    background-color: #7b87fb;
+    padding: 20px;
+    margin: 10px 0px 0px 0px;
+    text-align: center;
+    border: 1px solid #dee2e6;
+}
+
+body{
+    background-color: #ccd8ff;
+    font-family: serif, bold;
+    
+}
+
+/* Altera a cor de fundo da barra de navegação */
+.ui-menubar {
+    background-color: #7b87fb !important; /* Azul mais forte */
+}
+
+/* Altera a cor de fundo dos itens do menu */
+.ui-menuitem {
+    background-color: #daddfb !important; /* Azul mais escuro */
+}
+
+/* Altera a cor quando o item do menu está ativo */
+.ui-menuitem.ui-state-active {
+    background-color: #6633ff !important; /* Azul esverdeado */
+
+}
+
+.commandButton{
+    align-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.center_content {
+    /*background-color: #dddddd;*/
+    padding: 5px;
+    width: 80vw;
+    margin: 0 auto;
+    min-height: 70vh;
+}
+.align-center {
+    /*background-color: #9999ff;*/
+    margin: 0 auto;
+    width: 70%;
+}
+
+@media (max-width: 900px) {
+    .align-center {
+        width: 100%;
+    }
+    .center_content {
+        width: 100%;
+    }
+}

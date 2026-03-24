@@ -1,0 +1,29 @@
+package br.edu.ifsp.pep.dao;
+
+import br.edu.ifsp.pep.entidade.Pessoa;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+import java.util.List;
+
+/**
+ *
+ * @author aluno
+ */
+@Stateless
+public class PessoaDAO extends AbstractDAO<Pessoa>{
+    
+    public List<Pessoa> buscarTodas() {
+        
+        EntityManager em = getEntityManager();
+        TypedQuery<Pessoa> query = em.createNamedQuery("Pessoa.buscarTodas", Pessoa.class);
+        
+        return query.getResultList();
+        
+    }
+    
+    public Pessoa buscarPeloId(Integer id){
+        EntityManager em = getEntityManager();
+        return em.find(Pessoa.class,id);
+    }
+}

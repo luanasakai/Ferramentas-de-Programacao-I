@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>JSF/PRIMEFACES - 17/09/2025</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body style="background-color: #BADFCD">
+        <div style="display: flex; justify-content: center; margin-left: 20px">
+            <h1><font color= '#454545'>Cadastro de Pessoas</font></h1>
+        </div>
+        <hr/>
+        
+         <div style="display: flex; justify-content: center;">
+            <h:form id="form">
+                <p:growl id="growl" showDetail="true"/>  <!-- aparece a mensagem na tela -->
+                <font color= '#454545'  style="margin-left: 40px;">Nome:</font>
+                <p/>
+                <p:inputText 
+                    value="#{pessoaController.pessoa.nome}"
+                    style="margin-left: 40px"
+                    />
+                <p/>
+
+                <font color= '#454545'  style="margin-left: 40px">Data de Nascimento:</font>
+                <p/>
+                <p:datePicker 
+                    value="#{pessoaController.pessoa.dataNascimento}"
+                    style="margin-left: 40px"
+                    />
+
+                <p/>
+
+                <font color= '#454545'  style="margin-left: 40px">Salário:</font>
+                <p/>
+                <p:inputNumber 
+                    value="#{pessoaController.pessoa.salario}"
+                    style="margin-left: 40px"
+                    />
+
+                <p/>
+
+                <div style="display: flex;">
+                    <p:commandButton 
+                        value="Inserir"
+                        update="growl"
+                        ajax="false" 
+                        action="#{pessoaController.inserir()}"
+                        style="
+                        background-color: #454545;
+                        color: white;
+                        margin-top: 20px;
+                        border: none;
+                        padding: 10px 20px;
+                        font-size: 16px;
+                        border-radius: 5px;
+                        margin-right: 10px;
+                        margin-left: 30px;"
+                        onmouseover="this.style.backgroundColor = '#41B97D';" 
+                        onmouseout="this.style.backgroundColor = '#E7F8BE';  this.style.color = '#454545';"
+                        />
+
+                    <p:commandButton 
+                        value="Exibir"
+                        update="growl"
+                        ajax="false" 
+                        action="/pessoa/lista.xhtml"
+                        style="
+                        background-color: #454545;
+                        color: white;
+                        margin-top: 20px;
+                        border: none;
+                        padding: 10px 20px;
+                        font-size: 16px;
+                        border-radius: 5px;"
+                        onmouseover="this.style.backgroundColor = '#736EAE';" 
+                        onmouseout="this.style.backgroundColor = '#ADB5D6';  this.style.color = '#454545';"
+                        />
+                </div>
+                <!--<font color= "black">Numero:</font>
+                <p/>
+                <p:inputText value="# {pessoaController.numero}"/>
+                <p/> -->
+                <!-- ajax="false"- da update na pagina inteira 
+                     <span/> - da um espacinho entre os componentes-->
+
+                <!-- <font color= "black" style="margin-left: 40px">Numero:</font>
+                <p/>
+                <p:spinner 
+                    id="numero" 
+                    value="# {pessoaController.pessoa.numero}"
+                    style="margin-left: 40px;"
+                /> 
+                
+                   <p:commandButton 
+                        value="Incrementar" 
+                        update="numero" 
+                        ajax="false" 
+                        action="# {pessoaController.incrementar()}"
+                        style="background-color: crimson; margin-left: 40px;"
+                />
+                -->
+            </h:form> 
+        </div>
+    </h:body>
+</html>

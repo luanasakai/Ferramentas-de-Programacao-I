@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                template="/WEB-INF/template.xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+
+        <h:form id="form" class="align-center">
+
+            <p:panelGrid columns="4" layout="tabular" style="width: 100%">
+                <f:facet name="header">
+                    Venda
+                </f:facet>
+
+                <h:outputLabel value="Produto" for="@next" />
+                <p:selectOneMenu style="width: 250px" value="#{vendaController.produtoSelecionado}">
+                    <f:selectItem itemLabel="Selecione" itemValue="" />
+                    <f:selectItems value="#{vendaController.buscarTodosProdutos()}"
+                                   var="item" itemLabel="#{item.nome}" itemValue="#{item}"/>
+
+                </p:selectOneMenu>
+
+                <h:outputLabel value="Quantidade" for="@next" />
+                <p:inputNumber size="2" value="#{vendaController.quantidade}" />
+
+            </p:panelGrid>
+
+            <p:commandButton class="commandButton"
+                             value="Adicionar" 
+                             action="#{vendaController.adicionar}"
+                             update=":growl tabela"/>
+
+            <p:dataTable id="tabela" value="#{vendaController.itensVenda}"
+                         var="item">
+
+                <p:column headerText="Produto">
+                    <h:outputText value="#{item.produto.nome}" />
+                </p:column>
+                
+                <p:column headerText="Quantidade">
+                    <h:outputText value="#{item.quantidade}" />
+                </p:column>
+
+                <p:column headerText="Preço">
+                    <h:outputText value="#{item.preco}" />
+                </p:column>
+                
+                <p:column>
+                    <p:commandButton icon="pi pi-trash"
+                                     style="background-color: red;"
+                                     update="form:growl,tabela"
+                                     action="#{vendaController.excluir(venda)}"/>
+                </p:column>
+
+            </p:dataTable>
+
+            <p:commandButton class="commandButton"
+                             value="Visualizar Pedido" 
+                             action="/venda/visualizar"
+                             />
+        </h:form>
+    </ui:define>
+</ui:composition>

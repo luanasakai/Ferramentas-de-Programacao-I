@@ -1,0 +1,6 @@
+br/edu/ifsp/pep/util/Mensagem.class
+br/edu/ifsp/pep/dao/PessoaDao.class
+br/edu/ifsp/pep/entidade/Pessoa.class
+br/edu/ifsp/pep/controller/PessoaController.class
+br/edu/ifsp/pep/dao/AbstractDao.class
+br/edu/ifsp/pep/controller/HomeController.class

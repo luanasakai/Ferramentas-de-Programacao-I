@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="primefaces"><!-- necessario inserir toda vez que criar um arquivo xhtml -->
+    <head>
+        <title>Listar Pessoas</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <ui:composition template="/WEB-INF/template.xhtml"><!-- para o h:form funcionar precisa de ui:composition e ui:define -->
+            <ui:define name="content">
+                <h:form>
+                    <p:growl id="growl" showDetail="true" />
+                    <p:growl id="growl-sticky" for="sticky-key" showDetail="true" sticky="true" />
+
+                    <div class="tabela-pessoas">
+                        <p:dataTable id="tabela"
+                                     var="pessoa" 
+                                     value="#{pessoaController.obterPessoas()}"
+                                     selection="#{pessoaController.pessoaSelecionada}"
+                                     selectionMode="single"
+                                     rowKey="#{pessoa.id}"
+
+                                     rows="10"
+                                     paginator="true" 
+                                     paginatorPosition="both">
+
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{pessoa.nome}" />
+                            </p:column>
+                            <p:column headerText="Telefone">
+                                <h:outputText value="#{pessoa.telefone}" />
+                            </p:column>
+                            <p:column headerText="Endereço">
+                                <h:outputText value="#{pessoa.endereco}" />
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                    <p:commandButton 
+                        value="Editar"
+                        action="#{pessoaController.editar()}"
+                        />
+                    <p:commandButton 
+                        styleClass="ui-button-danger"
+                        value="Excluir"
+                        update="tabela, growl" 
+                        action="#{pessoaController.excluir()}"
+                        />
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
